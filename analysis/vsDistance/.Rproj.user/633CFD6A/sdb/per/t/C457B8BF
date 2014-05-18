@@ -1,0 +1,17 @@
+{
+    "contents" : "library(ggplot2)\ndata=read.csv('fitnessVsDist.csv',header=FALSE)\ncolnames(data) <- c('gene','position','effect')\nplot(data$position,data$effect)\n\nggplot(data,aes(x=position,y=effect,color=gene))+geom_line()+xlim(-20,100)\n\nplot(factor(table(data$gene)),xlab=\"# of sgRNAs in this gene\",ylab=\"# of genes\")\n\nfits=read.csv('fittingPerGene.csv',header=FALSE)\ncolnames(fits) <- c('gene','intercept','slope')\nhist(fits$slope,breaks=20,xlim=c(-.03,.03),main=\"Slopes of linear fit for each gene of effect vs distance from ATG\")\n",
+    "created" : 1391804010523.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3765557340",
+    "id" : "C457B8BF",
+    "lastKnownWriteTime" : 1392351438,
+    "path" : "~/PycharmProjects/parseRegulonDB/analysis/vsDistance/analysis.R",
+    "project_path" : "analysis.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

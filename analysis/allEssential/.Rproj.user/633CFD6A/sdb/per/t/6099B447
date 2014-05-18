@@ -1,0 +1,22 @@
+{
+    "contents" : "",
+    "created" : 1393617490430.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "6099B447",
+    "lastKnownWriteTime" : 4514280448,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "caption" : "genes",
+        "contentUrl" : "content?title=genes&file=9b046a6731364a04a10499dcdd6c3069.htm",
+        "displayedObservations" : 1000,
+        "displayedVariables" : 16,
+        "totalObservations" : 4636,
+        "variables" : 16
+    },
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}

@@ -1,0 +1,22 @@
+{
+    "contents" : "",
+    "created" : 1391807395903.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "593BDF71",
+    "lastKnownWriteTime" : 6066188612560498736,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "caption" : "fits",
+        "contentUrl" : "content?title=fits&file=e989caa10b7a4a91be5714985eb8f759.htm",
+        "displayedObservations" : "122",
+        "displayedVariables" : 3,
+        "totalObservations" : "122",
+        "variables" : "3"
+    },
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}

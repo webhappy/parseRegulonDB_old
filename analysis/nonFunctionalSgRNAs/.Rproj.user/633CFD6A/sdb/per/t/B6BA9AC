@@ -1,0 +1,17 @@
+{
+    "contents" : "nums <- read.csv('sgRNAs_per_gene.csv')\n",
+    "created" : 1397690702432.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2671173073",
+    "id" : "B6BA9AC",
+    "lastKnownWriteTime" : 1397696963,
+    "path" : "~/PycharmProjects/parseRegulonDB/analysis/nonFunctionalSgRNAs/plot_counts_per_gene.R",
+    "project_path" : "plot_counts_per_gene.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

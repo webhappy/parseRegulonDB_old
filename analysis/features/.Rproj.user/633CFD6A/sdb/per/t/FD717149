@@ -1,0 +1,17 @@
+{
+    "contents" : "library(lattice)\ndata <- read.csv('features.csv')\nsummary(data)\nmat <- read.csv('heatmap_good.csv',header=FALSE)\nmat <- data.matrix(mat)\nrownames(mat) <- c(\"A\",\"C\",\"G\",\"T\")\ncolnames(mat) <- 1:20\n# heatmap(mat,Rowv=NA,Colv=NA,labRow=c('A','C','G','T'))\ncolors <- colorRampPalette(c('blue','black','yellow'))(30)\nlevelplot(t(mat),xlab=\"Position\",ylab=\"NT\",col.values=c('A','C','G','T'),col.regions=colors,main=\"Mean log ratio for sgRNA's that contain this nucleotide at this postion\")\n\nfeatures <- read.csv('features.csv')\nplot(features$Target ~ features$DistanceFromATG,xlim=c(0,200),main=\"Poor performance is not an obvious function of distance\")\nboxplot(features$Target ~ features$GCperc,ylab=\"Log ratio\",xlab=\"%GC\")\nplot(features$Target~features$wtA)\nplot(features[,4:ncol(features)])\n",
+    "created" : 1392687085745.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1518703846",
+    "id" : "FD717149",
+    "lastKnownWriteTime" : 1392857602,
+    "path" : "~/PycharmProjects/parseRegulonDB/features/plot_heatmap.R",
+    "project_path" : "plot_heatmap.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

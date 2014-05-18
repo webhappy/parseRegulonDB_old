@@ -1,0 +1,17 @@
+{
+    "contents" : "library(ggplot2)\ndata <- read.csv('offTargetResults.csv')\nsummary(data)\n\nqplot(data$mean,color=data$hasOffTargets,geom='density',xlab='Mean LR of each sgRNA')+theme_bw()\nqplot(data$mean,color=data$onlyPerfectOffTargets,geom='density')+theme_bw()\n\nportion <- data[data$numOff>0 & data$mean < -2,]\nlm(portion$mean ~ portion$numOff)\nplot(portion$numOff,portion$mean,main='Does having more off-targets increase fitness defect?',sub='Limiting to 51 sgRNAs that hit more than once w/ fitness defect stronger than -2',ylab='Mean LR of each sgRNA',xlab='# of places sgRNA hits (can be non-exact)')\n",
+    "created" : 1392432438175.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "904514698",
+    "id" : "C48A67AE",
+    "lastKnownWriteTime" : 1392599365,
+    "path" : "~/PycharmProjects/parseRegulonDB/analysis/offTargets/analyze_r.R",
+    "project_path" : "analyze_r.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

@@ -1,0 +1,22 @@
+{
+    "contents" : "",
+    "created" : 1394844808338.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "C3FB1943",
+    "lastKnownWriteTime" : 140733193388033,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "caption" : "temp",
+        "contentUrl" : "content?title=temp&file=17578e394fe247b78df91c0fcb5122c0.htm",
+        "displayedObservations" : 302,
+        "displayedVariables" : 27,
+        "totalObservations" : 302,
+        "variables" : 26
+    },
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}

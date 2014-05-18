@@ -1,0 +1,17 @@
+{
+    "contents" : "library(ggplot2)\n\ngross <- read.csv('gross.csv')\ngrossSubset <- data.frame(gross$ECKID,gross$Gene,gross$GLUCOSE...UNSPECIFIED,gross$GLYCEROL...UNSPECIFIED)\nkeio <- read.csv('keio.csv')\nkeio$LB_22hr[keio$LB_22hr=='N.A.']=NA\nkeio$LB_22hr <- as.numeric(as.character(keio$LB_22hr))\nkeio$MOPS_24hr[keio$MOPS_24hr=='N.A.']=NA\nkeio$MOPS_24hr <- as.numeric(as.character(keio$MOPS_24hr))\nkeioSubset <- data.frame(keio$eckID,keio$LB_22hr,keio$MOPS_24hr)\n\npalsson <- read.csv('palsson_microarray_data_w_info_080826.csv')\npalsson$X <- as.character(palsson$X)\npalsson$X <- as.character(sapply(strsplit(palsson$X,split=\"_\"),'[[',1))\npalssonAerobicMean <- apply(cbind(palsson$ec_aer_wild_O_a_SciA.CEL,palsson$ec_aer_wild_O_b_SciA.CEL,palsson$ec_aer_wild_O_c_SciA.CEL),1,mean)\npalssonAnaerobicMean <- apply(cbind(palsson$ec_aer_wild_nO_a_SciA.CEL,palsson$ec_aer_wild_nO_b_SciA.CEL,palsson$ec_aer_wild_nO_c_SciA.CEL,palsson$ec_aer_wild_nO_d_SciA.CEL),1,mean)\npalssonSubset <- data.frame(tolower(palsson$X),palssonAerobicMean,palssonAnaerobicMean)\n\nmerged <- merge(grossSubset,keioSubset,by.x='gross.ECKID',by.y='keio.eckID',all=TRUE)\nmerged$gross.Gene <- tolower(merged$gross.Gene)\nmerged <- merged[!is.na(merged$gross.Gene),]\nmerged <- merge(merged, palssonSubset,by.x='gross.Gene',by.y='tolower.palsson.X.',all.x=TRUE)\n\n#plots ----\nhist(keio$LB_22hr)\nhist(keio$MOPS_24hr)\nhist(gross$GLUCOSE...UNSPECIFIED)\nplot(merged$gross.GLUCOSE...UNSPECIFIED,merged$keio.LB_22hr)\n\nlibrary(RMySQL)\n#pull in genes data from mySQL\ncon <- dbConnect(MySQL(),dbname='t')\ngenes <- dbReadTable(con,'GENE')\nPEC <- dbReadTable(con,'PEC')\nPEC$gene_name <- tolower(PEC$gene_name)\ngenes$gene_name <- tolower(genes$gene_name)\ngenes <- genes[!is.na(genes$gene_name),]\nmergedWithGenes <- merge(merged,genes,by.x='gross.Gene',by.y='gene_name',all.y=T)\nmergedWithGenes$isEssential <- mergedWithGenes$gross.Gene %in% PEC$gene_name\nqplot(mergedWithGenes$gross.GLUCOSE...UNSPECIFIED,mergedWithGenes$keio.LB_22hr,color=mergedWithGenes$isEssential)\nqplot(mergedWithGenes$keio.LB_22hr,geom='density',color=mergedWithGenes$isEssential)\n\n#pull in list of cases we're investigating----\noddCases <- read.csv('oddCases.csv')\noddCases$Gene <- tolower(as.character(oddCases$Gene))\noddCases$Seq <- as.character(oddCases$Seq)\nfinalTable <- merge(oddCases,mergedWithGenes,by.x='Gene',by.y='gross.Gene',all.x=TRUE)\nwrite.csv(finalTable,'oddCases_with_data.csv')\n\n#look at the data----\nstrongChanges <- mergedWithGenes$mean < -1\nsum(strongChanges)\nstrongChanges <- mergedWithGenes[strongChanges,]\nplot(strongChanges$keio.LB_22hr,strongChanges$mean,xlab='Keio OD in LB @ 22 hrs',ylab='Mean of significant sgRNAs')\nplot(strongChanges$gross.GLUCOSE...UNSPECIFIED,strongChanges$mean,xlab='Gross Glucose score',ylab='Mean of significant sgRNAs')\nplot(strongChanges$palssonAnaerobicMean,strongChanges$mean,xlab='Palsson anaerobic mean microarray expression',ylab='Mean of significant sgRNAs')\n",
+    "created" : 1396906847409.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3265132150",
+    "id" : "7860B98E",
+    "lastKnownWriteTime" : 1394850397,
+    "path" : "~/PycharmProjects/parseRegulonDB/growthData/importData.R",
+    "project_path" : "importData.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}
